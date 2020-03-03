@@ -1,6 +1,12 @@
 let playerScores = 0;
 let compScores = 0;
-let maxRound = 0;
+let round = 1;
+
+var container = document.querySelector('#container'); //append new stuffs into here
+
+var welcome = document.createElement('div');
+welcome.classList.add('welcome');
+welcome.textContent = 'Rock-Paper-Scissor';
 
 function computerPick( value ) {
     let cpuPlay = Math.floor( Math.random() * Math.floor( value ));
@@ -14,8 +20,7 @@ function computerPick( value ) {
     }
 }
 
-var paper = document.querySelector('.paper');
-paper.addEventListener('click', () => {
+function comparePaper() {
     var compChoice = computerPick(3);
     switch(compChoice){
         case 'paper':
@@ -30,11 +35,11 @@ paper.addEventListener('click', () => {
             ++compScores;
             break;
     }
-    ++maxRound;
-});
+    ++round;
+    announcingResults();
+}
 
-var rock = document.querySelector('.rock');
-rock.addEventListener('click', () => {
+function compareRock() {
     var compChoice = computerPick(3);
     switch(compChoice){
         case 'paper':
@@ -49,11 +54,12 @@ rock.addEventListener('click', () => {
             ++playerScores;
             break;           
     }
-    ++maxRound;
-});
+    ++round;
+    announcingResults();
 
-var scissor = document.querySelector('.scissor');
-scissor.addEventListener('click', () => {
+}
+
+function compareScissor() {
     var compChoice = computerPick(3);
     switch(compChoice){
         case 'paper':
@@ -68,37 +74,56 @@ scissor.addEventListener('click', () => {
             results.textContent = 'CPU picked '+compChoice+'. It\'s a draw!';
             break;
     }
-    ++maxRound;
-});
+    ++round;
+    announcingResults();
+}
 
-var container = document.querySelector('#container'); //append new stuffs into here
-
-var welcome = document.createElement('div');
-welcome.classList.add('welcome');
-welcome.textContent = 'Rock-Paper-Scissor';
-
-var results = document.createElement('div');
-results.classList.add('results');
-if(maxRound == 5) {
-    switch(maxRound) {
-        case playerScores > compScores:
-            results.textContent = ` Your scores: ${playerScores}, Computer scores: ${compScores}.`;
-            results.textContent = ` Congratulations! You have won against the computer! `;
-            break;
-        case playerScores < compScores:
-            results.textContent = ` Your scores: ${playerScores}, Computer scores: ${compScores}.`
-            results.textContent = ` Oh no! You have lost against the computer! `;
-            break;
-        default:
-            results.textContent = ` Your scores: ${playerScores}, Computer scores: ${compScores}.`
-            results.textContent = `It's a draw battle! No one have won or lost!`;
-            break;
+function announcingResults() {
+    if(round == 5) {
+        switch(round) {
+            case playerScores > compScores:
+                scores.textContent = ` Your scores: ${playerScores}, Computer scores: ${compScores}.`;
+                results.textContent = ` Congratulations! You have won against the computer! `;
+                break;
+            case playerScores < compScores:
+                scores.textContent = ` Your scores: ${playerScores}, Computer scores: ${compScores}.`
+                results.textContent = ` Oh no! You have lost against the computer! `;
+                break;
+            default:
+                scores.textContent = ` Your scores: ${playerScores}, Computer scores: ${compScores}.`
+                results.textContent = `It's a draw battle! No one have won or lost!`;
+                break;
+        }
     }
 }
 
+var paper = document.querySelector('.paper');
+paper.addEventListener('click', comparePaper);
+
+var rock = document.querySelector('.rock');
+rock.addEventListener('click', compareRock);
+
+var scissor = document.querySelector('.scissor');
+scissor.addEventListener('click', compareScissor);
+
+var results = document.createElement('div');
+results.classList.add('results');
+
+var rounds = document.createElement('div');
+rounds.classList.add('rounds');//need a function to show round number
+
+var scores = document.createElement('div');
+scores.classList.add('scores');
+
+var completedGame = document.createElement('div');
+noGame.classList.add('completedGame'); //need a fn to stop game after 5
+
+
 container.appendChild(welcome);
 container.appendChild(results);
-
+container.appendChild(rounds);
+container.appendChild(scores);
+container.appendChild(completedGame);
 
 
 
