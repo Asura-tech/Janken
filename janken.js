@@ -37,7 +37,7 @@ function comparePaper() {
     }
     announcingResults();
     ++round;
-
+    showRound();
 }
 
 function compareRock() {
@@ -57,7 +57,7 @@ function compareRock() {
     }
     announcingResults();
     ++round;
-
+    showRound();
 }
 
 function compareScissor() {
@@ -77,12 +77,13 @@ function compareScissor() {
     }
     announcingResults();
     ++round;
+    showRound();
 }
 
 function announcingResults() {
     scores.textContent = ` Your scores: ${playerScores}. Computer scores: ${compScores}.`;
     if(round == 5) {
-        removeChildren(container, [paper, rock, scissor]);
+        removeChildren(container, [paper, rock, scissor, battleRound]);
         switch((playerScores > compScores)) {
             case true:
                 results.textContent = ` Congratulations! You have won against the computer! `;
@@ -102,6 +103,14 @@ function removeChildren(node, array) {
 }
 
 
+function showRound() {
+    battleRound.textContent = 'Round ' + round;
+}
+
+function resetGame() {
+    window.location.reload();
+}
+
 var paper = document.querySelector('.paper');
 paper.addEventListener('click', comparePaper);
 
@@ -117,10 +126,17 @@ results.classList.add('results');
 var scores = document.createElement('div');
 scores.classList.add('scores');
 
+var battleRound = document.createElement('div');
+battleRound.classList.add('battle-round');
+
+var reset = document.querySelector('.reset');
+reset.addEventListener('click', resetGame);
+
 container.appendChild(welcome);
 container.appendChild(results);
 container.appendChild(scores);
-
+container.appendChild(battleRound);
+container.appendChild(reset);
 
 
 
