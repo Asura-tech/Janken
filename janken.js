@@ -2,6 +2,7 @@ let playerScores = 0;
 let compScores = 0;
 let round = 0;
 let maxRound = 5;
+let compChoice;
 
 var container = document.querySelector('#container'); //append new stuffs into here
 
@@ -22,7 +23,7 @@ function computerPick( value ) {
 }
 
 function comparePaper() {
-    var compChoice = computerPick(3);
+    compChoice = computerPick(3);
     switch(compChoice){
         case 'paper':
             results.textContent = 'CPU picked '+compChoice+'. It\'s a draw!';
@@ -43,7 +44,7 @@ function comparePaper() {
 }
 
 function compareRock() {
-    var compChoice = computerPick(3);
+    compChoice = computerPick(3);
     switch(compChoice){
         case 'paper':
             results.textContent = 'CPU picked '+compChoice+'. You lost!';
@@ -64,7 +65,7 @@ function compareRock() {
 }
 
 function compareScissor() {
-    var compChoice = computerPick(3);
+    compChoice = computerPick(3);
     switch(compChoice){
         case 'paper':
             results.textContent = 'CPU picked '+compChoice+'. You won!';
@@ -86,17 +87,18 @@ function compareScissor() {
 
 function announcingResults() {
     battleRound.textContent = 'Round ' + round + ' out of ' + maxRound;
+    results.textContent = 'CPU picked '+compChoice;
     if(round == 5) {
         removeChildren(container, [paper, rock, scissor]);
         switch((playerScores > compScores)) {
             case true:
-                results.textContent = ` Congratulations! You have won against the computer! `;
+                announcer.textContent = ` Congratulations! You have won against the computer! `;
                 break;
             case false:
-                results.textContent = ` Oh no! You have lost against the computer! `;
+                announcer.textContent = ` Oh no! You have lost against the computer! `;
                 break;
             default:
-                results.textContent = `It's a draw battle! No one have won or lost!`;
+                announcer.textContent = `It's a draw battle! No one have won or lost!`;
                 break;
         }
     }
@@ -122,6 +124,9 @@ scissor.addEventListener('click', compareScissor);
 var results = document.createElement('div');
 results.classList.add('results');
 
+var announcer = document.createElement('div');
+announcer.classList.add('announcer');
+
 var scores = document.createElement('div');
 scores.classList.add('scores');
 
@@ -133,6 +138,7 @@ reset.addEventListener('click', resetGame);
 
 container.appendChild(welcome);
 container.appendChild(results);
+container.appendChild(announcer);
 container.appendChild(scores);
 container.appendChild(battleRound);
 container.appendChild(reset);
