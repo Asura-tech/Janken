@@ -1,6 +1,7 @@
 let playerScores = 0;
 let compScores = 0;
 let round = 0;
+let maxRound = 5;
 
 var container = document.querySelector('#container'); //append new stuffs into here
 
@@ -35,9 +36,10 @@ function comparePaper() {
             ++compScores;
             break;
     }
-    announcingResults();
     ++round;
-    showRound();
+    battleRound.textContent = 'Round ' + round + ' out of ' + maxRound;
+    announcingResults();
+    scores.textContent = ` Your scores: ${playerScores}. Computer scores: ${compScores}.`;
 }
 
 function compareRock() {
@@ -55,9 +57,10 @@ function compareRock() {
             ++playerScores;
             break;           
     }
-    announcingResults();
     ++round;
-    showRound();
+    battleRound.textContent = 'Round ' + round + ' out of ' + maxRound;
+    announcingResults();
+    scores.textContent = ` Your scores: ${playerScores}. Computer scores: ${compScores}.`;
 }
 
 function compareScissor() {
@@ -75,15 +78,16 @@ function compareScissor() {
             results.textContent = 'CPU picked '+compChoice+'. It\'s a draw!';
             break;
     }
-    announcingResults();
     ++round;
-    showRound();
+    battleRound.textContent = 'Round ' + round + ' out of 5';
+    announcingResults();
+    scores.textContent = ` Your scores: ${playerScores}. Computer scores: ${compScores}.`;
 }
 
 function announcingResults() {
-    scores.textContent = ` Your scores: ${playerScores}. Computer scores: ${compScores}.`;
+    battleRound.textContent = 'Round ' + round + ' out of ' + maxRound;
     if(round == 5) {
-        removeChildren(container, [paper, rock, scissor, battleRound]);
+        removeChildren(container, [paper, rock, scissor]);
         switch((playerScores > compScores)) {
             case true:
                 results.textContent = ` Congratulations! You have won against the computer! `;
@@ -100,11 +104,6 @@ function announcingResults() {
 
 function removeChildren(node, array) {
     array.forEach(element =>  node.removeChild(element));
-}
-
-
-function showRound() {
-    battleRound.textContent = 'Round ' + round;
 }
 
 function resetGame() {
@@ -137,6 +136,3 @@ container.appendChild(results);
 container.appendChild(scores);
 container.appendChild(battleRound);
 container.appendChild(reset);
-
-
-
