@@ -87,8 +87,8 @@ function compareScissor() {
 
 function announcingResults() {
     battleRound.textContent = 'Round ' + round + ' out of ' + maxRound;
-    results.textContent = 'CPU picked '+compChoice;
     if(round == 5) {
+        results.textContent = 'CPU picked '+compChoice;
         removeChildren(container, [paper, rock, scissor]);
         switch((playerScores > compScores)) {
             case true:
