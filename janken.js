@@ -4,7 +4,7 @@ let round = 0;
 let maxRound = 5;
 let compChoice;
 
-var container = document.querySelector('#container'); //append new stuffs into here
+var container = document.querySelector('.container'); //append new stuffs into here
 
 var welcome = document.createElement('div');
 welcome.classList.add('welcome');
