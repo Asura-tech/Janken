@@ -4,7 +4,7 @@ let round = 0;
 let maxRound = 5;
 let compChoice;
 
-var container = document.querySelector('.container'); //append new stuffs into here
+var container = document.querySelector('.container');
 
 var welcome = document.createElement('div');
 welcome.classList.add('welcome');
@@ -90,14 +90,14 @@ function announcingResults() {
     if(round == 5) {
         results.textContent = 'CPU picked '+compChoice;
         removeChildren(container, [paper, rock, scissor]);
-        switch((playerScores > compScores)) {
+        switch(playerScores > compScores) {
             case true:
                 announcer.textContent = ` Congratulations! You have won against the computer! `;
                 break;
             case false:
                 announcer.textContent = ` Oh no! You have lost against the computer! `;
                 break;
-            default:
+            case playerScores == compScores:
                 announcer.textContent = `It's a draw battle! No one have won or lost!`;
                 break;
         }
