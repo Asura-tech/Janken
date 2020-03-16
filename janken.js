@@ -37,10 +37,8 @@ function comparePaper() {
             ++compScores;
             break;
     }
-    ++round;
-    battleRound.textContent = 'Round ' + round + ' out of ' + maxRound;
+    keepTrack();
     announcingResults();
-    scores.textContent = ` Your scores: ${playerScores}. Computer scores: ${compScores}.`;
 }
 
 function compareRock() {
@@ -58,10 +56,8 @@ function compareRock() {
             ++playerScores;
             break;           
     }
-    ++round;
-    battleRound.textContent = 'Round ' + round + ' out of ' + maxRound;
+    keepTrack();
     announcingResults();
-    scores.textContent = ` Your scores: ${playerScores}. Computer scores: ${compScores}.`;
 }
 
 function compareScissor() {
@@ -79,29 +75,29 @@ function compareScissor() {
             results.textContent = 'CPU picked '+compChoice+'. It\'s a draw!';
             break;
     }
-    ++round;
-    battleRound.textContent = 'Round ' + round + ' out of 5';
+    keepTrack();
     announcingResults();
-    scores.textContent = ` Your scores: ${playerScores}. Computer scores: ${compScores}.`;
 }
 
 function announcingResults() {
-    battleRound.textContent = 'Round ' + round + ' out of ' + maxRound;
     if(round == 5) {
         results.textContent = 'CPU picked '+compChoice;
         removeChildren(container, [paper, rock, scissor]);
-        switch(playerScores > compScores) {
-            case true:
-                announcer.textContent = ` Congratulations! You have won against the computer! `;
-                break;
-            case false:
-                announcer.textContent = ` Oh no! You have lost against the computer! `;
-                break;
-            case playerScores == compScores:
-                announcer.textContent = `It's a draw battle! No one have won or lost!`;
-                break;
+        if (playerScores == compScores) {
+            announcer.textContent = `It's a draw battle! No one have won or lost!`;
+        } else if (playerScores > compScores) {                
+            announcer.textContent = ` Congratulations! You have won against the computer! `;
+        } else if (playerScores < compScores) {
+            announcer.textContent = ` Oh no! You have lost against the computer! `;
         }
     }
+}
+
+function keepTrack() {
+    ++round;
+    battleRound.textContent = 'Round ' + round + ' out of ' + maxRound;
+    scores.textContent = ` Your scores: ${playerScores}. Computer scores: ${compScores}.`;
+
 }
 
 function removeChildren(node, array) {
