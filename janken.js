@@ -8,7 +8,7 @@ var container = document.querySelector('.container');
 
 var welcome = document.createElement('div');
 welcome.classList.add('welcome');
-welcome.textContent = 'Rock-Paper-Scissor';
+welcome.textContent = 'Rock-Paper-Scissor Minigame:';
 
 function computerPick( value ) {
     let cpuPlay = Math.floor( Math.random() * Math.floor( value ));
@@ -96,8 +96,8 @@ function announcingResults() {
 function keepTrack() {
     ++round;
     battleRound.textContent = 'Round ' + round + ' out of ' + maxRound;
-    scores.textContent = ` Your scores: ${playerScores}. Computer scores: ${compScores}.`;
-
+    playerRecord.textContent = `Your scores: ${playerScores}`;
+    computerRecord.textContent = `Computer scores: ${compScores}`;
 }
 
 function removeChildren(node, array) {
@@ -123,11 +123,11 @@ results.classList.add('results');
 var announcer = document.createElement('div');
 announcer.classList.add('announcer');
 
-var scores = document.createElement('div');
-scores.classList.add('scores');
+var playerRecord = document.querySelector('.player-scores');
 
-var battleRound = document.createElement('div');
-battleRound.classList.add('battle-round');
+var computerRecord = document.querySelector('.computer-scores');
+
+var battleRound = document.querySelector('.battle-round');
 
 var reset = document.querySelector('.reset');
 reset.addEventListener('click', resetGame);
@@ -135,6 +135,7 @@ reset.addEventListener('click', resetGame);
 container.appendChild(welcome);
 container.appendChild(results);
 container.appendChild(announcer);
-container.appendChild(scores);
+container.appendChild(playerRecord);
+container.appendChild(computerRecord);
 container.appendChild(battleRound);
 container.appendChild(reset);
