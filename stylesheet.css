@@ -1,14 +1,58 @@
 .container {
+    width: 500px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: minmax(20px, auto);
-    grid-column-gap: 10px;
-    grid-row-gap: 15px;
-    justify-content: center;
-    margin-top: 200px;
+    grid-template-rows: minmax(50px, auto);
+    grid-column-gap: 20px;
+    row-gap: 15px;
 }
 
-.paper {
-    align-self: flex-start;
+
+.paper, .scissor, .rock {
+    grid-row: third-line / span 4;
+    justify-self: center;
+    width: 200px;
 }
+
+.scores, .battle-round {
+    width: 250px;
+    justify-self: left;
+}
+
+.battle-round {
+    grid-column-end: 2;
+    grid-row-end: 3;
+}
+
+.computer-scores {
+    grid-column-end: 3;
+    grid-row-end: 3;
+}
+
+.player-scores {
+    grid-column-end: 4;
+    grid-row-end: 3;
+}
+.welcome {
+    grid-row-start: 1;
+    grid-column-start: 2;
+}
+
+.welcome {
+    height: 1px;
+    width: 220px;
+    grid-row: first-line / 1;
+}
+
+.reset {
+    grid-column: 2 / 3;
+    align-self: end;
+}
+
+button {
+    outline: none;
+    border-radius: 5px;
+}
+
+
 
