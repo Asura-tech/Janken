@@ -117,8 +117,7 @@ rock.addEventListener('click', compareRock);
 var scissor = document.querySelector('.scissor');
 scissor.addEventListener('click', compareScissor);
 
-var results = document.createElement('div');
-results.classList.add('results');
+var results = document.querySelector('.results');
 
 var announcer = document.createElement('div');
 announcer.classList.add('announcer');
