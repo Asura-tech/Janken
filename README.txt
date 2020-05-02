@@ -3,4 +3,4 @@ Refactor all previous codes into DOM methods.
 
 To check out the live version:
 
-https://asurafiend.github.io/Janken/
+https://bug-keeper.github.io/Janken/
